@@ -1,8 +1,19 @@
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
 const PORT = 6002
 
+
+
 app.use(express.json())
+app.use(morgan( function (request, response, next) {
+  console.log('Method:', request.method)
+  console.log('Path:  ', request.path)
+  console.log('Body:  ', request.body)
+  console.log('error')
+//  next()
+}))
+
 
 let persons = [
     { 
@@ -55,7 +66,9 @@ app.delete('/api/perons/delete/:id', (request, response) => {
 
 app.post('/api/persons/add', (request, response) => {
     const newId = Math.ceil(Math.random() * 20)
-    persons[persons.length + 1] = { id: newId, name: "unknown", number: "unknown"} 
+    // persons[persons.length + 1] = { id: newId, name: "unknown", number: "unknown"}
+    // response.json(persons)
+    console.log(request)
 })
 
 app.listen( PORT, () => {

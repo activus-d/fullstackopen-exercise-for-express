@@ -1,1 +1,1 @@
-GET http://localhost:6002/api/persons
+POST http://localhost:6002/api/persons/addcls
